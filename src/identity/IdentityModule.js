@@ -286,6 +286,11 @@ class IdentityModule {
         let complete_id = _this.getIdentity(identity.userProfile.userURL);
         let expiration_date = undefined;
 
+        // if nodejs just return the identity
+        _this.runtimeCapabilities.isAvailable('node').then((result) => {
+          return resolve(identity);
+        });
+
         if (complete_id.hasOwnProperty('info')) {
           if (complete_id.info.hasOwnProperty('expires')) {
             expiration_date = complete_id.info.expires;
