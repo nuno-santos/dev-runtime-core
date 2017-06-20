@@ -295,10 +295,12 @@ class IdentityModule {
           } else {
             // throw 'The ID Token does not have an expiration time';
             console.log('The ID Token does not have an expiration time');
+            resolve(identity);
           }
         } else {
           // throw 'The ID Token does not have an expiration time';
           console.log('The ID Token does not have an expiration time')
+          resolve(identity);
         }
 
         console.log('[Identity.IdentityModule.getValidToken] Token expires in', expiration_date);
@@ -318,7 +320,6 @@ class IdentityModule {
         } else {
           resolve(identity);
         }
-        resolve(identity);
       }).catch(function(error) {
         console.error('[Identity.IdentityModule.getToken] error on getToken', error);
         reject(error);
